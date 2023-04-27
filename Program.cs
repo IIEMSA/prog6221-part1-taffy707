@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,56 +13,61 @@ namespace recipe_app_POE
         static void Main(string[] args)
         {
             recipe recipe = new recipe();
+            bool clear = false;
 
+            while (clear == false)
 
-            Console.WriteLine("Welcome To Sanele's Recipe Application!"); //first line welcomes the user to the app
-            Console.WriteLine("----------------     A new Recipe   ---------------- ");
-            
-
-            Console.WriteLine("Enter number of ingredients in your recipe: ");
-            int noIngredients = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < noIngredients; i++)
             {
-                recipe.addingredient();
-            }
+                Console.WriteLine("Welcome To Sanele's Recipe Application!"); //first line welcomes the user to the app
+                Console.WriteLine("----------------     A new Recipe   ---------------- ");
 
-            Console.WriteLine("How many Steps does this recipe Have?");
-            int noSteps = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < noSteps; i++)
+
+                Console.WriteLine("Enter number of ingredients in your recipe: ");
+                int noIngredients = Convert.ToInt32(Console.ReadLine());
+
+                for (int i = 0; i < noIngredients; i++)
                 {
-                int num;
-                num = i + 1;
-                Console.WriteLine("Step " + num);
-                recipe.addStep();
+                    recipe.addingredient();
                 }
 
-            recipe.displayRecipe();
-            Console.WriteLine("View the recipe in different scales: ");
-            Console.WriteLine("Enter 1: a factor of 0.5 (half) | Enter 2: a factor of 2 (double) | Enter 3: a factor of 3 (triple) | Enter 4: Goto Main menu" );
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)//references the above choices
-            {
-                case 1: 
-                    recipe.scale(0.5);
+                Console.WriteLine("How many Steps does this recipe Have?");
+                int noSteps = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < noSteps; i++)
+                {
+                    int num;
+                    num = i + 1;
+                    Console.WriteLine("Step " + num);
+                    recipe.addStep();
+                }
 
-                    break;
-                case 2: 
-                    recipe.scale(2);
-                    break;
+                recipe.displayRecipe();
+                Console.WriteLine("View the recipe in different scales: ");
+                Console.WriteLine("Enter 1: a factor of 0.5 (half) | Enter 2: a factor of 2 (double) | Enter 3: a factor of 3 (triple) | Enter 4: Goto Main menu");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)//references the above choices
+                {
+                    case 1:
+                        recipe.scale(0.5);
 
-                case 3:
-                    recipe.scale(3);
-                    break;
-                
-                case 4:
-                    break;
+                        break;
+                    case 2:
+                        recipe.scale(2);
+                        break;
+
+                    case 3:
+                        recipe.scale(3);
+                        break;
+
+                    case 4:
+                        break;
+                }
+
+                Console.WriteLine("If you wish to clear data and create a new recipe Enter 'Y'");
+                string h = Console.ReadLine();
+                if (h.Equals("y")) { recipe.clearData(); clear = false; }
+
+
             }
-
-
-
-
-
 
 
 
@@ -73,10 +78,6 @@ namespace recipe_app_POE
         }
     }
 
-    class mainProgram
-    {
-
-    }
 
     class recipe
     {
@@ -84,7 +85,6 @@ namespace recipe_app_POE
         public ArrayList quantities = new ArrayList();
         public ArrayList units = new ArrayList();
         public ArrayList steps = new ArrayList();
-        public ArrayList recipeName = new ArrayList();
         public ArrayList originalQuantities = new ArrayList();
 
 
@@ -162,5 +162,16 @@ namespace recipe_app_POE
             displayRecipe();
         }
 
+        public void clearData()
+        {
+            ingredientName.Clear();
+            quantities.Clear();
+            units.Clear();
+            steps.Clear();
+            originalQuantities.Clear();
+        }
+
     }
 }
+
+
